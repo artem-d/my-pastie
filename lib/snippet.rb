@@ -1,9 +1,6 @@
 require 'uv'
 require 'mongo'
 
-MONGO = Mongo::Connection.new('localhost', 27017).
-               db('my_pastie')
-               
 class Snippet
   class << self
 

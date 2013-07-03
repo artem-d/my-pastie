@@ -1,0 +1,28 @@
+<div>
+<a href="/">back to list</a>
+</div>
+
+<form accept-charset="UTF-8" action="/" method="post">
+
+  <label for="language">Language:</label>
+  <select id="language" name="language">
+    <option value="ruby.rails">Rails</option>
+    <option value="ruby">Ruby</option>
+    <option value="objc">Objective-C</option>
+    <option value="coffee">CoffeeScript</option>
+    <option value="plain">Plain</option>
+  </select><br />
+  <label for="theme">Theme:</label>
+  <select id="theme" name="theme">
+    <option value="twilight">twilight</option>
+    <option value="brilliance_black">brilliance_black</option>
+    <option value="mac_classic">mac_classic</option>
+    <option value="blackboard">blackboard</option>
+  </select><br />
+
+  <label for="title">Title:</label><br />
+  <input id="title" name="title" type="text" size="100" /><br />
+  <label for="code">Code:</label><br />
+  <textarea id="code" name="code" cols="60" rows="12" style="margin: 2px; width: 636px; height: 400px; "></textarea><br />
+  <input name="commit" type="submit" value="Generate" /><br />
+</form>

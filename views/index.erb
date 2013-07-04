@@ -1,8 +1,12 @@
 <h1>Snippets</h1>
 <div class="new-snippet-link"><a href="/new">New Snippet</a></div>
 <hr />
+   
 <% snippets.each do |snippet|  %>
-  <div class="snippet-row">
-    <a href="/<%= snippet["_id"].to_s %>">show</a> [<%= snippet["language"].to_s.upcase %>] | <%= snippet["title"] %>
-  </div>
+  <form action="/<%= snippet["_id"].to_s %>" method="post">  
+    <a href="/<%= snippet["_id"].to_s %>">show</a>
+    [<%= snippet["language"].to_s.upcase %>] | <%= snippet["title"] %>
+    <input type="hidden" name="_method" value="delete">  
+    <input type="submit" value="Delete">  
+  </form>  
 <% end  %>

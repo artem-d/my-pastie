@@ -21,5 +21,8 @@ class Snippet
                   theme: theme }
       DB["snippets"].insert(snippet).to_s
     end
+    def delete(id)
+      DB["snippets"].remove(:_id => BSON::ObjectId.from_string(id))
+    end
   end # end of class methods
 end

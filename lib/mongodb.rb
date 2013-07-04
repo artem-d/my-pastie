@@ -1,6 +1,8 @@
 require 'mongo'
 require 'uri'
 
+include Mongo
+
 def get_connection
   return @db_connection if @db_connection
   db = URI.parse(ENV['MONGOHQ_URL'])
@@ -11,7 +13,7 @@ def get_connection
 end
 
 if ENV['RACK_ENV'] == 'production'
-  MONGO = get_connection
+  DB = get_connection
 else
-  MONGO = Mongo::Connection.new('localhost', 27017).db('my_pastie')
+  DB = MongoClient.new('localhost', 27017).db('my_pastie')
 end

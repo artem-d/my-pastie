@@ -1,14 +1,15 @@
+require './lib/mongodb'
 require 'uv'
 
 class Snippet
   class << self
 
     def all
-      MONGO["snippets"].find.to_a
+      DB["snippets"].find.to_a
     end
 
     def find(id)
-      MONGO["snippets"].find_one("_id" => BSON::ObjectId.from_string(id))
+      DB["snippets"].find_one("_id" => BSON::ObjectId.from_string(id))
     end
 
     def create(params)
@@ -18,8 +19,7 @@ class Snippet
                   code: Uv.parse(params[:code], "xhtml", language , true, theme),
                   language: language,
                   theme: theme }
-      MONGO["snippets"].insert(snippet).to_s
+      DB["snippets"].insert(snippet).to_s
     end
   end # end of class methods
-
 end

@@ -1,9 +1,17 @@
+require 'mongo'
+require 'uri'
+
+def get_connection
+  return @db_connection if @db_connection
+  db = URI.parse(ENV['MONGOHQ_URL'])
+  db_name = db.path.gsub(/^\//, '')
+  @db_connection = Mongo::Connection.new(db.host, db.port).db(db_name)
+  @db_connection.authenticate(db.user, db.password) unless (db.user.nil? || db.user.nil?)
+  @db_connection
+end
+
 if ENV['RACK_ENV'] == 'production'
-  db = URI.parse(ENV['MONGOHQ_URI'])
-  db_name = db.path.gsub(/^\//,'')
-  MONGO = Mongo::Connection.new(db.host, db.port).db(db_name)
-  MONGO.authenticate(db.user, db.password) unless (db.user.nil? || db.user.nil?)
+  MONGO = get_connection
 else
-  MONGO = Mongo::Connection.new('localhost', 27017).
-               db('my_pastie')
+  MONGO = Mongo::Connection.new('localhost', 27017).db('my_pastie')
 end

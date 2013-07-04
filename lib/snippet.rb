@@ -1,5 +1,4 @@
 require 'uv'
-require 'mongo'
 
 class Snippet
   class << self
